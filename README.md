@@ -10,11 +10,19 @@ var dockerifyRepo = require('dockerify-github-repo');
 
 dockerifyRepo('thlorenz/browserify-markdown-editor', function (err, streamfns) {
   if (err) return console.error(err);
-  console.log(Object.keys(streamfns));    
+
+  console.log('\ntags for which streams were resolved:\n', Object.keys(streamfns));    
+
+  // pipe first stream into docker or (to demo) to the console 
+  // note the function call `()`
+  console.log('\nStreaming first stream:\n');
+  streamfns['000-nstarted']().pipe(process.stdout);
 })
 .on('info', log.info.bind(log))
 .on('debug', log.verbose.bind(log))
 ```
+
+#### Output
 
 ```
 info Resolving tar streams for 12 tags
@@ -23,12 +31,23 @@ verb Got redirect for: https://github.com/thlorenz/browserify-markdown-editor/ar
 info Resolved stream for: https://codeload.github.com/thlorenz/browserify-markdown-editor/tar.gz/000-nstarted
 [ .. ]
 info Resolved stream for: https://codeload.github.com/thlorenz/browserify-markdown-editor/tar.gz/011-finished-product
+
+tags for which streams were resolved:
+
 [ '000-nstarted',
   '001-start',
   [ .. ]
   '010-finished-dev-version',
   '011-finished-product' ]
 
+Streaming first stream:
+
+.000666 000000 000000 00000000064 12216176030 011116 0ustar00rootroot000000 000000 52 comment=d4c6d5abfce89add3128fbee5d3981a20484534b
+.000775 000000 000000 00000000000 12216176030 011112 5ustar00rootroot000000 000000 .gitignore000664 000000 000000 00000000141 12216176030 013020 0ustar00rootroot000000 000000 lib-cov
+*.seed
+*.log
+*.csv
+[..]
 ```
 
 ## Installation
