@@ -114,15 +114,16 @@ Each tar stream has a Dockerfile injected unless one was found already.</p>
 </td>
 <td class="attributes">
 </td>
-<td class="description last"><p>called back with an error or a hash of the form {Object.<github-tag:string, value:(function:readablestream)="">}
-each function can be invoked to return a stream that can be piped into docker to create an image</github-tag:string,></p></td>
+<td class="description last"><p>called back with an error or a hash of the form <code>{Object.&lt;github-tag:string, value:(function:ReadableStream)&gt;}</code>
+each function can be invoked to return a stream that can be piped into docker to create an image.</p>
+<p><strong>Note</strong> that each stream emits all <a href="https://github.com/thlorenz/dockerify#note">dockerify events</a>.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="details">
 <dt class="tag-source">Source:</dt>
 <dd class="tag-source"><ul class="dummy"><li>
-<a href="index.js.html">index.js</a>, <a href="index.js.html#line19">line 19</a>
+<a href="index.js">index.js</a>, <a href="index.js#L19">line 19</a>
 </li></ul></dd>
 </dl>
 <h5>Returns:</h5>

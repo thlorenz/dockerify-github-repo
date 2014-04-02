@@ -25,7 +25,7 @@
     "npmlog": "0.0.6",
     "tap": "~0.4.3"
   },
-  "keywords": [],
+  "keywords": [ "docker", "dockerify", "github", "tar", "release", "stream" ],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
