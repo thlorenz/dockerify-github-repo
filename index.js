@@ -26,7 +26,7 @@ var go = module.exports =
  * @param {Object=} dockerifyOpts passed to [dockerify](https://github.com/thlorenz/dockerify#tarstream-opts--readablestream)
  * @param {function} cb called back with an error or a hash of the form {Object.<github-tag:string, value:(function:ReadableStream)>}
  *                      each function can be invoked to return a stream that can be piped into docker to create an image
- * @return {EventEmitter} which emits `'info'` and `'debug'` messages
+ * @return {EventEmitter} event emitter which emits `'info'` and `'debug'` messages
  */
 function (repo, dockerifyOpts, cb) {
   var events = new EE();
