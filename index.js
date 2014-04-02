@@ -4,6 +4,7 @@ var resolveGithubRefs = require('resolve-github-refs')
   , dockerify         = require('dockerify')
   , path              = require('path')
   , xtend             = require('xtend')
+  , asyncreduce       = require('asyncreduce')
   , tarStream         = require('./lib/tar-stream')
 
 var defaultDockerfile = path.join(__dirname, 'lib', 'Dockerfile');
@@ -37,12 +38,18 @@ function (repo, dockerifyOpts, cb) {
     if (err) return cb(err);
     if (!refs || !refs.tags || !refs.tags.length) return cb(null, []);
 
-    var tarStreams = refs.tags
-      .map(function (tag) {
-        var intar = tarStream(repo, tag);
-        return dockerify(intar, dockerifyOpts)
-      });
-
-    cb(null, tarStreams);
+    var tarStreams = 
+    asyncreduce(
+        refs.tags
+      , {}
+      , function (acc, tag, cb_) {
+          tarStream(repo, tag, function (err, intar) {
+            if (err) return cb_(err);
+            acc[tag] = intar;
+            cb_(null, acc)
+          })
+        }
+      , cb
+    )
   })
 }

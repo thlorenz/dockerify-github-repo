@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/thlorenz/dockerify-github-repo",
   "dependencies": {
+    "asyncreduce": "~0.1.4",
     "dockerify": "~0.1.0",
     "hyperquest": "~0.3.0",
     "resolve-github-refs": "~0.1.0",
