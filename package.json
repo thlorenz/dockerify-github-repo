@@ -1,6 +1,6 @@
 {
   "name": "dockerify-github-repo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Given a github repository url, returns a tar stream for each release with Dockerfile injected that can be piped into docker to create an image.",
   "main": "index.js",
   "scripts": {
