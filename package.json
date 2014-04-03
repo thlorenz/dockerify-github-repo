@@ -4,8 +4,11 @@
   "description": "Given a github repository url, returns a tar stream for each release with Dockerfile injected that can be piped into docker to create an image.",
   "main": "index.js",
   "scripts": {
-    "test": "set -e; for t in test/*.js; do node $t; done;",
-    "test-0.8": "nave use 0.8 npm run test"
+    "test-main": "set -e; for t in test/*.js; do node $t; done;",
+    "test-0.8": "nave use 0.8 npm run test-main",
+    "test-0.10": "nave use 0.10 npm run test-main",
+    "test-all": "npm run test-main && npm run test-0.8 && npm run test-0.10",
+    "test": "if [ -e $TRAVIS ]; then npm run test-all; else git checkout master && npm run test-main; fi"
   },
   "repository": {
     "type": "git",
@@ -14,7 +17,7 @@
   "homepage": "https://github.com/thlorenz/dockerify-github-repo",
   "dependencies": {
     "asyncreduce": "~0.1.4",
-    "dockerify": "~0.2.1",
+    "dockerify": "~0.2.2",
     "hyperquest": "~0.3.0",
     "resolve-github-refs": "~0.1.0",
     "through2": "~0.4.1",
@@ -25,7 +28,14 @@
     "npmlog": "0.0.6",
     "tap": "~0.4.3"
   },
-  "keywords": [ "docker", "dockerify", "github", "tar", "release", "stream" ],
+  "keywords": [
+    "docker",
+    "dockerify",
+    "github",
+    "tar",
+    "release",
+    "stream"
+  ],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
@@ -36,6 +46,6 @@
     "url": "https://github.com/thlorenz/dockerify-github-repo/blob/master/LICENSE"
   },
   "engine": {
-    "node": ">=0.10"
+    "node": ">=0.8"
   }
 }
