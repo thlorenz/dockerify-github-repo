@@ -70,7 +70,7 @@ Streaming first stream:
 </div>
 <dl>
 <dt>
-<h4 class="name" id="dockerifyGithubRepo"><span class="type-signature"></span>dockerifyGithubRepo<span class="signature">(repo, <span class="optional">dockerifyOpts</span>, cb)</span><span class="type-signature"> &rarr; {EventEmitter}</span></h4>
+<h4 class="name" id="dockerifyGithubRepo"><span class="type-signature"></span>dockerifyGithubRepo<span class="signature">(repo, <span class="optional">opts</span>, cb)</span><span class="type-signature"> &rarr; {EventEmitter}</span></h4>
 </dt>
 <dd>
 <div class="description">
@@ -98,7 +98,27 @@ Each tar stream has a Dockerfile injected unless one was found already.</p>
 <td class="description last"><p>github repo of the form <code>user/reponame</code></p></td>
 </tr>
 <tr>
-<td class="name"><code>dockerifyOpts</code></td>
+<td class="name"><code>opts</code></td>
+<td class="type">
+<span class="param-type">Object</span>
+</td>
+<td class="attributes">
+&lt;optional><br>
+</td>
+<td class="description last">
+<h6>Properties</h6>
+<table class="params">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Argument</th>
+<th class="last">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="name"><code>dockerify</code></td>
 <td class="type">
 <span class="param-type">Object</span>
 </td>
@@ -106,6 +126,20 @@ Each tar stream has a Dockerfile injected unless one was found already.</p>
 &lt;optional><br>
 </td>
 <td class="description last"><p>passed to <a href="https://github.com/thlorenz/dockerify#tarstream-opts--readablestream">dockerify</a></p></td>
+</tr>
+<tr>
+<td class="name"><code>filter</code></td>
+<td class="type">
+<span class="param-type">function</span>
+</td>
+<td class="attributes">
+&lt;optional><br>
+</td>
+<td class="description last"><p>allows filtering tags for which images are created, return <code>false</code> to ignore it or <code>true</code> to include</p></td>
+</tr>
+</tbody>
+</table>
+</td>
 </tr>
 <tr>
 <td class="name"><code>cb</code></td>
@@ -122,9 +156,13 @@ each function can be invoked to return a stream that can be piped into docker to
 </table>
 <dl class="details">
 <dt class="tag-source">Source:</dt>
-<dd class="tag-source"><ul class="dummy"><li>
-<a href="index.js">index.js</a>, <a href="index.js#L19">line 19</a>
-</li></ul></dd>
+<dd class="tag-source"><ul class="dummy">
+<li>
+<a href="https://github.com/thlorenz/dockerify-github-repo/blob/master/index.js">index.js</a>
+<span>, </span>
+<a href="https://github.com/thlorenz/dockerify-github-repo/blob/master/index.js#L19">lineno 19</a>
+</li>
+</ul></dd>
 </dl>
 <h5>Returns:</h5>
 <div class="param-desc">
